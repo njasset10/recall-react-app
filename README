@@ -1,0 +1,54 @@
+README
+Simple Time Released Content to Beat Knowledge Extinction
+human learning powered by machine learning
+
+
+start with 'exp start' in command line
+run 'exp send -s <your-phone-number-or-email>'
+exp send -s <617-697-4123>
+// still can't figure out why the tunnel closes...
+// Restart with `exp start --tunnel`
+
+
+LOGIC
+What questions should the user be seeing right now?
+
+// Should only see questions related to content they've experienced --
+const { experiences } = member;
+const responsesFromMemberToday = [];
+const uniqueContentRespondedToToday = [];
+
+
+experiences.forEach((experience) => {
+  const firstExperienceDateInDays = formatAsDays(experience.createdAt); //will be an integer like "20,134" in days since 1970 or w/e...
+  const todayInDays = formatAsDays(); //will be an integer like "20,144" in days since 1970 or w/e...
+  const daysFromFirstExperienceToToday = todayInDays - firstExperienceDateInDays; // will be an integer like "10".
+  const arrayOfDaysOnWhichToShowContent = experience.testingInterval.daysFromContentExperience;
+
+  // check if the user should see content from that experience today
+  if (arrayOfDaysOnWhichToShowContent.indexOf(daysFromFirstExperienceToToday) != -1 ) {
+    // today is a day they should get content
+    // but have they already gotten that content
+    // what content has the user already responded to today?
+    member.responses.forEach((response) => {
+      if (formatAsDays(response.createdAt) === todayInDays) {
+        responsesFromMemberToday.push(response);
+        if (uniqueContentSeenToday.indexOf(response.article.id) === -1 ) {
+          uniqueContentRespondedToToday.push(response.article);
+        }
+      }
+    })
+    // has the user already responded to any content for this article?
+    if (uniqueContentRespondedToToday.indexOf(experience.artice.id) === -1) {
+      const randomQuestionNumber = Math.floor(Math.random() * experience.article.questions.length);
+      // DISPLAY experience.article.questions[randomQuestionNumber];
+    }
+  }
+  // display "All done for today + results (you got 4/5 questions right!)"
+  // assumes users only see one question per content per relevant day
+}
+
+
+
+What questions should the user be able to see they've answered?
+-- All their responses member.responses. // all data -- sorted by tine - most recent to oldest
