@@ -1,7 +1,7 @@
 README
 Simple Time Released Content to Beat Knowledge Extinction
 human learning powered by machine learning
-
+spaces repititon
 
 start with 'exp start' in command line
 run 'exp send -s <your-phone-number-or-email>'
@@ -49,6 +49,16 @@ experiences.forEach((experience) => {
 }
 
 
+MUTATION FOR WHEN USER SELECTS A RESPONSE
+
 
 What questions should the user be able to see they've answered?
 -- All their responses member.responses. // all data -- sorted by tine - most recent to oldest
+
+
+
+Had to modify the isomorphic fetch package to be able to use it --> specifically the error of "can't find variable "self" 
+require('whatwg-fetch');
+// module.exports = self.fetch.bind(self);
+var globalObject = typeof self === "undefined" ? global : self;
+module.exports = globalObject.fetch.bind(globalObject);

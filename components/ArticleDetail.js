@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 import {
-	Text
+  Text,
 } from 'react-native';
 
-import Card from './Card'
-import CardSection from './CardSection'
+import Card from './Card';
+import CardSection from './CardSection';
 
 export default class ArticleDetail extends Component {
   constructor(props) {
@@ -16,14 +16,13 @@ export default class ArticleDetail extends Component {
 			return (
 				<Card>
 					<CardSection>
-						<Text>{this.props.article.name}</Text>
+						<Text>{this.props.article.title}</Text>
 					</CardSection>
 
 					<CardSection>
-						<Text>{this.props.article.name}</Text>
+						<Text>{this.props.article.title}</Text>
 					</CardSection>
 				</Card>
 			);
 		}
-
 }

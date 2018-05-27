@@ -1,43 +1,38 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
-  Button,
   Dimensions,
   ScrollView,
-  TouchableOpacity
 } from 'react-native';
 import 'moment-timezone';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Animbutton from './animbutton';
 
-import Animbutton from './animbutton'
-const { width, height } = Dimensions.get('window')
-const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
+const { width } = Dimensions.get('window');
+const B = (props) => <Text style={{ fontWeight: 'bold' }}>{ props.children }</Text>;
 
 export default class Quiz extends Component {
-
   constructor(props) {
     super(props);
-    this.questionNumber = 0
-		this.testNumber = 0
-    this.score = 0
-
+    this.questionNumber = 0;
+    this.testNumber = 0;
+    this.score = 0;
     this.state = {
-			data: null,
-			allQuestions: {},
-			addedToRecall: null,
-			articleName: null,
-			programName: null,
-			publisherName: null,
-      question : "",
-      options : {},
-      correctoption : "",
-      countCheck : 0,
-			quizLength : 0,
-			testLength: 0,
-			totalTestCount: 0
+      data: null,
+      allQuestions: {},
+      addedToRecall: null,
+      articleName: null,
+      programName: null,
+      publisherName: null,
+      question: '',
+      options: {},
+      correctoption: '',
+      countCheck: 0,
+      quizLength: 0,
+      testLength: 0,
+      totalTestCount: 0,
     }
 
   }

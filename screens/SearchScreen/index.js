@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
 
 import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
+  View,
   Text,
-	ListView,
-  TouchableOpacity,
-  View
 } from 'react-native';
 
-import ArticleList  from '../../components/ArticleList';
+import ArticleList from '../../components/ArticleList';
 
 const styles = require('../../assets/Styles.js');
 
 export default class SearchScreen extends Component {
   static navigationOptions = {
-    title: "Search",
+    title: 'Search',
   };
 
   render() {
     return (
-			<ArticleList />
+      <View>
+        <Text>
+          First Name:
+          Last Name:
+          Phone Number:
+          Email:
+        </Text>
+        <ArticleList />
+      </View>
     );
   }
 }

@@ -1,82 +1,72 @@
 import React, { Component } from 'react';
-
 import {
-	ScrollView,
-	View
+  View,
+  Text,
 } from 'react-native';
 
-import ArticleDetail from './ArticleDetail'
-
-const token =  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTQ1OTAzNzIsImNsaWVudElkIjoiY2pic2swMXcxMTIwMzAxNzZ1ZDE2MTlndSJ9.9aX0fISOAXfhrdcga5ylwhwJhsA6QLEzjc1Rh1Te21U";
-const endpoint = 'https://api.graph.cool/simple/v1/cjbsk01w112020176k3cqrytg';
+import ArticleDetail from './ArticleDetail';
+import GraphService from '../service/GraphService';
 // const memberId = this.props.memberId;
 
-
 export default class ArticleList extends Component {
-	  constructor(props) {
-	    super(props);
+  constructor(props) {
+    super(props);
+    this.state = {
+      allArticles: [],
+      isLoading: false,
+    };
+  }
 
-	    this.state = {
-				allArticles: [],
-	    }
+  componentWillMount() {
+    this.setState({
+      isLoading: true,
+    });
 
-	  }
+    GraphService.getAllArticles()
+      .then(data => {
+        this.setState({
+          allArticles: data,
+          isLoading: false,
+        });
+      }).catch(error => {
+        this.setState({
+          allArticles: [],
+        });
+      });
+  }
 
-	async componentWillMount() {
-		const articlesQuery = `
-		query{
-		  allArticles {
-		    id
-				name
-		    program{
-		      name
-		      publisher{
-		        name
-		      }
-		    }
-		  }
-		}
-		`
-
-		try {
-			const response = await fetch(endpoint, {
-				method: 'POST',
-				headers: {
-					'Authorization': token,
-					'Accept': 'application/json',
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					query: articlesQuery,
-				})
-			});
-
-			const data = JSON.parse(response._bodyInit).data
-
-			this.setState({
-				allArticles: data.allArticles,
-			});
-
-		} catch(error) {
-			console.log(error);
-		}
-	}
-
-	renderArticles() {
-		return this.state.allArticles.map( article =>
-			<ArticleDetail
-				key={article.id}
-				article={article}
-			/>
-		);
-	}
+  renderArticles() {
+    if (this.state.isLoading) {
+      return (
+        <View>
+          Loading...
+        </View>
+      );
+    }
+    if (this.state.allArticles.length === 0) {
+      return (
+        <View>
+          No articles to show here...
+        </View>
+      );
+    }
+    return this.state.allArticles.map(article =>
+      <ArticleDetail
+        key={article.id}
+        article={article}
+      />
+    );
+  }
 
 
-	render() {
-			return (
-				<View>
-				 	{this.renderArticles()}
-				</View>
-			);
-		}
+  render() {
+    return (
+      <View>
+        <Text>
+          Any content?
+        </Text>
+        {this.renderArticles()}
+      </View>
+    );
+  }
 }

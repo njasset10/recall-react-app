@@ -4,9 +4,6 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
-var Appsee = require('react-native-appsee');
-
-
 const spaceMonoFont = require('./assets/fonts/SpaceMono-Regular.ttf');
 const robotDev = require('./assets/images/robot-dev.png');
 const robotProd = require('./assets/images/robot-prod.png');
@@ -23,10 +20,6 @@ export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   };
-
-  componentDidMount() {
-    // Appsee.start('26592f74fe7442919b5549d4790fafde');
-  }
 
   loadResourcesAsync = async () =>
     Promise.all([
