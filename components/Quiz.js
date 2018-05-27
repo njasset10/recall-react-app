@@ -1,81 +1,18 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   ScrollView,
-  Dimensions,
   TouchableOpacity,
 } from 'react-native';
 import moment from 'moment';
 import 'moment-timezone';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const B = (props) => <Text style={{ fontWeight: 'bold' }}>{ props.children }</Text>;
+import DisplayNoQuestions from './DisplayNoQuestions';
+import quizStyles from '../styles/styleSheet';
 
-const { width } = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-  displayQuestionBox: {
-    width: width * 95 / 100,
-    borderRadius: 10,
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  seenContentBox: {
-    marginTop: 30,
-  },
-  seenContent: {
-    fontSize: 15,
-    color: 'grey',
-  },
-  displayQuestionText: {
-    fontSize: 20,
-    margin: 15,
-    color: 'grey',
-  },
-  possibleAnswers: {
-    margin: 15,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  box: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  scrollViewStyle: {
-    backgroundColor: '#F5FCFF',
-    paddingTop: 10,
-  },
-  forwardAndBackSection: {
-    flexDirection: 'row',
-  },
-  previousButton: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingRight: 20,
-    paddingLeft: 20,
-    borderRadius: 10,
-    marginRight: 20,
-    backgroundColor: '#f08080',
-  },
-  nextButton: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingRight: 20,
-    paddingLeft: 20,
-    borderRadius: 10,
-    marginLeft: 20,
-    backgroundColor: '#90ee90',
-  },
-});
+const styles = quizStyles.makeStyleSheet;
 
 export default class Quiz extends Component {
   constructor(props) {
@@ -93,17 +30,7 @@ export default class Quiz extends Component {
   render() {
     if (this.state.data === null) {
       return (
-        <ScrollView style={styles.scrollViewStyle}>
-          <View style={styles.container}>
-            <View style={styles.box}>
-              <View style={styles.displayQuestionBox} >
-                <Text style={styles.displayQuestionText}>
-                  No questions today - check out your progress!
-                </Text>
-              </View>
-            </View>
-          </View>
-        </ScrollView>
+        <DisplayNoQuestions />
       );
     }
     return (
@@ -144,7 +71,7 @@ export default class Quiz extends Component {
           </View>
 
           <View style={styles.seenContentBox}>
-            <Text style={styles.seenContent}>*This question comes <B from="from..." /> </Text>
+            <Text style={styles.seenContent}>*This question comes from...</Text>
             <Text style={styles.seenContent}>{this.state.publisherName} - {this.state.programName} - {this.state.articleName}</Text>
             <Text style={styles.seenContent}>Which you added to Recall on {this.state.addedToRecall}</Text>
           </View>
@@ -153,15 +80,4 @@ export default class Quiz extends Component {
       </ScrollView>
     );
   }
-}
-
-
-function arrayToObj(array, fn) {
-  const obj = {};
-  const len = array.length;
-  for (let i = 0; i < len; i += 1) {
-    const item = fn(array[i], i, array);
-    obj[item.key] = item.value;
-  }
-  return obj;
 }
