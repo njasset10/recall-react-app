@@ -8,9 +8,9 @@ const ARTICLES_QUERY = `
     allArticles {
       id
       title
-      program{
+      program {
         name
-        publisher{
+        publisher {
           name
         }
       }

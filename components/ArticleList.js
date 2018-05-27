@@ -38,16 +38,16 @@ export default class ArticleList extends Component {
   renderArticles() {
     if (this.state.isLoading) {
       return (
-        <View>
+        <Text>
           Loading...
-        </View>
+        </Text>
       );
     }
     if (this.state.allArticles.length === 0) {
       return (
-        <View>
+        <Text>
           No articles to show here...
-        </View>
+        </Text>
       );
     }
     return this.state.allArticles.map(article =>
@@ -62,9 +62,6 @@ export default class ArticleList extends Component {
   render() {
     return (
       <View>
-        <Text>
-          Any content?
-        </Text>
         {this.renderArticles()}
       </View>
     );

@@ -17,12 +17,6 @@ export default class SearchScreen extends Component {
   render() {
     return (
       <View>
-        <Text>
-          First Name:
-          Last Name:
-          Phone Number:
-          Email:
-        </Text>
         <ArticleList />
       </View>
     );
