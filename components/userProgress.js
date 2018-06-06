@@ -44,7 +44,6 @@ export default class UserProgress extends Component {
 	async componentWillMount() {
 		const todayDate = moment.tz('America/New_York').format("YYYY-MM-DD");
 		const tomorrowDate = moment.tz('America/New_York').add(1, 'd').format("YYYY-MM-DD");
-		console.log(todayDate);
 		const token =  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTQ1OTAzNzIsImNsaWVudElkIjoiY2pic2swMXcxMTIwMzAxNzZ1ZDE2MTlndSJ9.9aX0fISOAXfhrdcga5ylwhwJhsA6QLEzjc1Rh1Te21U";
 		const endpoint = 'https://api.graph.cool/simple/v1/cjbsk01w112020176k3cqrytg';
 		const memberId = this.props.memberId;
@@ -121,7 +120,6 @@ export default class UserProgress extends Component {
 			});
 
 			const data = JSON.parse(response._bodyInit).data
-			console.log(data.allTests);
 
 
 			let totalTestCount;
@@ -206,8 +204,6 @@ export default class UserProgress extends Component {
     if (status == true) {
         const count = this.state.countCheck + 1
         this.setState({ countCheck: count })
-				console.log(answer);
-				console.log(this.state.correctoption);
         if(answer == this.state.correctoption ){
           this.score += 1
         }

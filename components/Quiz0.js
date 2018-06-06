@@ -85,8 +85,6 @@ export default class Quiz extends Component {
     if (status == true) {
         const count = this.state.countCheck + 1
         this.setState({ countCheck: count })
-				console.log(answer);
-				console.log(this.state.correctoption);
         if(answer == this.state.correctoption ){
           this.score += 1
         }
@@ -102,7 +100,7 @@ export default class Quiz extends Component {
 
   render() {
     let _this = this
-    const currentOptions = this.state.options
+    const currentOptions = this.state.options;
     const options = Object.keys(currentOptions).map(function( option ) {
       return (
 				<View key={option} style={styles.possibleAnswers}>

@@ -14,12 +14,10 @@ export default class SettingsScreen extends Component {
   render() {
     return (
       <View>
-        <Text>
-          First Name:
-          Last Name:
-          Phone Number:
-          Email:
-        </Text>
+        <Text>First Name:</Text>
+        <Text>Last Name:</Text>
+        <Text>Phone Number:</Text>
+        <Text>Email:</Text>
       </View>
     );
   }

@@ -7,7 +7,7 @@ import {
 
 import quizStyles from '../styles/styleSheet';
 
-const styles = quizStyles.makeStyleSheet;
+const styles = quizStyles.makeStyleSheet();
 
 const DisplayNoQuestions = () => (
   <ScrollView style={styles.scrollViewStyle}>
